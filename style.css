@@ -440,10 +440,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     .hero-foto{ width: min(320px, 60%); }
 }
 
-/* =====================================================
-   EFEK INTERAKTIF & TRANSISI - VERSI TANPA JAVASCRIPT
-   (HTML tidak diubah sama sekali, cukup ganti style.css)
-   ===================================================== */
+/* ===== EFEK INTERAKTIF & TRANSISI ===== */
 @keyframes masuk{ from{ opacity:0; transform:translateY(24px); } to{ opacity:1; transform:none; } }
 @keyframes naik{ from{ opacity:0; transform:translateY(30px); } to{ opacity:1; transform:none; } }
 @keyframes apung{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
@@ -458,7 +455,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @keyframes vt-masuk{ from{ opacity:0; transform:translateY(24px); } }
 
 /* --- Transisi antar halaman --- */
-/* Fade-in saat halaman dibuka: jalan di semua browser, termasuk saat file dibuka langsung (file://) */
 .halaman, .hero-isi, .footer-hero{ animation: masuk .7s ease backwards; }
 
 /* --- Beranda --- */
@@ -467,7 +463,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .hero-isi > .slogan{ animation: naik .8s cubic-bezier(.2,.7,.2,1) .4s backwards; }
 .hero::before{ animation: gerak-latar 22s ease-in-out infinite alternate; }
 
-/* --- Muncul saat di-scroll (Chrome / Edge / Safari terbaru; lainnya tampil biasa) --- */
+/* --- Muncul saat di scroll --- */
 @supports (animation-timeline: view()){
     .blok > h2, .blok > p, .kartu, .galeri td, .tabel-harga tbody tr, .kotak-form{
         animation: naik linear backwards;
@@ -504,7 +500,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .kartu:nth-child(even):hover{ transform: translateY(-8px) rotate(1deg); }
 .kartu:active{ transform: scale(.97); }
 
-/* --- Galeri: foto lain meredup, keterangan meluncur naik --- */
+/* --- Galeri: foto lain meredup  --- */
 .galeri td{ transition: filter .4s; }
 .galeri:hover td:not(:hover) img{ filter: brightness(.55) saturate(.7); }
 .galeri img{ transition: transform .4s, filter .4s; }
@@ -534,8 +530,3 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* Pesan muncul sendiri saat semua kolom wajib sudah terisi benar */
 #form-pesan:valid + .pesan-sukses{ display: block; animation: pop .5s cubic-bezier(.2,.7,.2,1); }
 #form-pesan:valid + .pesan-sukses::before{ content: "\2713  Data sudah lengkap. Tekan \201CKirim Pesanan\201D untuk mengirim."; }
-
-/* --- Hormati pengguna yang mematikan animasi --- */
-@media (prefers-reduced-motion: reduce){
-    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*){ animation: none !important; }
-}
